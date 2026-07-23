@@ -144,9 +144,9 @@ Route::get('/taskpage', function() use ($tasks){
 })->name('tasks.index');
 // http://127.0.0.1:8000/taskpage + task.blade.php
 
-Route::get('/{id}', function($id) {
-    return 'one single task with id: ' . $id;
-})->name('tasks.show');
+// Route::get('/{id}', function($id) {
+//     return 'one single task with id: ' . $id;
+// })->name('tasks.show');
 // http://127.0.0.1:8000/2
 //navn er tasks.show, som er defineret ovenfor, og som bruges i index.blade.php filen
 
@@ -155,7 +155,7 @@ Route::get('/{id}', function($id) {
 
 
 //TEMPLATE INHERITANCE OBS! VIEWET LIGGE RI SHOW.BLADE.PHP
-Route::get('/template/{id}', function ($id) use ($tasks) {
+Route::get('/tasks/{id}', function ($id) use ($tasks) {
     $task = collect($tasks)->firstWhere('id', $id);
     if (!$task) {
         abort(Response::HTTP_NOT_FOUND);
@@ -171,13 +171,13 @@ Route::get('/template/{id}', function ($id) use ($tasks) {
 
 
 
-Route::get('/tasks/{id}', function ($id) use ($tasks) {
-    $task = collect($tasks)->firstWhere('id', $id);
+// Route::get('/tasks/{id}', function ($id) use ($tasks) {
+//     $task = collect($tasks)->firstWhere('id', $id);
 
-    if (!$task) {
-        abort(Response::HTTP_NOT_FOUND);
-    }
+//     if (!$task) {
+//         abort(Response::HTTP_NOT_FOUND);
+//     }
 
-    return view('show', ['task' => $task]);
-})->name('tasks.show');
+//     return view('show', ['task' => $task]);
+// })->name('tasks.show');
 // http://127.0.0.1:8000/tasks/1
